@@ -6,7 +6,7 @@ services:
     environment:
       - ISC_PASSWORD=3122414422
     volumes:
-      - firebird_data:/firebird/data
+      - /srv/firebird_data:/firebird/data
     ports:
       - "3050:3050"   
     networks:
@@ -24,14 +24,11 @@ services:
     image: atmoz/sftp
     container_name: sftp
     volumes:
-      - firebird_data:/home/data:rw   # comparte el volumen con Firebird
+      - /srv/firebird_data:/home/data
     ports:
       - "2222:22"
     command: admin:admin:1001   # user/pass para conectarte
     restart: unless-stopped
-volumes:
-  firebird_data:
-    name: "${SERVICE_NAME}_firebird_data"
 networks:
   traefik:
     external:
