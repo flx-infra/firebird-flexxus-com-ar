@@ -5,8 +5,6 @@ services:
     image: jacobalberty/firebird:2.5-sc
     environment:
       - ISC_PASSWORD=3122414422
-      - FIREBIRD_DATABASE=test.gdb
-      - EnableLegacyClientAuth=true
     volumes:
       - firebird_data:/firebird/data
       - firebird_conf:/firebird/etc
