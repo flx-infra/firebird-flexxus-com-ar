@@ -27,7 +27,7 @@ services:
       - firebird_data:/home/data:rw   # comparte el volumen con Firebird
     ports:
       - "2222:22"
-    command: user:password:1001   # user/pass para conectarte
+    command: admin:admin:1001   # user/pass para conectarte
     restart: unless-stopped
 volumes:
   firebird_data:
