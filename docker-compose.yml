@@ -7,7 +7,6 @@ services:
       - ISC_PASSWORD=3122414422
     volumes:
       - firebird_data:/firebird/data
-      - firebird_conf:/firebird/etc
     ports:
       - "3050:3050"   
     networks:
@@ -36,8 +35,6 @@ services:
 volumes:
   firebird_data:
     name: "${SERVICE_NAME}_firebird_data"
-  firebird_conf:
-    name: "${SERVICE_NAME}_firebird_conf"
   filebrowser_config:
     name: "${SERVICE_NAME}_filebrowser_config"
   filebrowser_db:
