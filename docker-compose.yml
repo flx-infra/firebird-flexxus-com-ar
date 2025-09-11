@@ -27,7 +27,7 @@ services:
       - /srv/firebird_data:/home/data
     ports:
       - "2222:22"
-    user: root  
+    command: sftp-user:admin:1001  
     restart: unless-stopped
 networks:
   traefik:
