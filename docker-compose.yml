@@ -28,7 +28,7 @@ services:
     container_name: filebrowser
     user: 1000:1000
     volumes:
-      - ./firebird/data:/srv   # Carpeta compartida con Firebird
+      - ./firebird/data:/srv   
       - ./filebrowser/config:/config
       - ./filebrowser/database:/database
     ports:
