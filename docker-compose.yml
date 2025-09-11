@@ -8,8 +8,8 @@ services:
       - FIREBIRD_DATABASE=test.gdb
       - EnableLegacyClientAuth=true
     volumes:
-      - ./firebird/data:/firebird/data
-      - ./firebird/conf:/firebird/etc
+      - firebird_data:/firebird/data
+      - firebird_conf:/firebird/etc
     ports:
       - "3050:3050"   
     networks:
@@ -29,12 +29,21 @@ services:
       - traefik
     user: 1000:1000
     volumes:
-      - ./firebird/data:/srv   
-      - ./filebrowser/config:/config
-      - ./filebrowser/database:/database
+      - firebird_data:/srv   # comparte el mismo volumen con Firebird
+      - filebrowser_config:/config
+      - filebrowser_db:/database
     ports:
       - "5003:80"
     restart: unless-stopped
+volumes:
+  firebird_data:
+    name: "${SERVICE_NAME}_firebird_data"
+  firebird_conf:
+    name: "${SERVICE_NAME}_firebird_conf"
+  filebrowser_config:
+    name: "${SERVICE_NAME}_filebrowser_config"
+  filebrowser_db:
+    name: "${SERVICE_NAME}_filebrowser_db"
 networks:
   traefik:
     external:
