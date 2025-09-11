@@ -23,7 +23,8 @@ services:
   sftp:
     image: linuxserver/openssh-server
     volumes:
-      - /srv/firebird_data:/home/sftp-user/data
+      - /srv/firebird_data:/data                   # Carpeta compartida con Firebird
+      - /srv/firebird_data/sftp-home:/home/sftp-user  # Home del usuario SFTP
     ports:
       - "2222:2222"
     environment:
