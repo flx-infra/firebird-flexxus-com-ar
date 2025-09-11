@@ -21,14 +21,17 @@ services:
         loki-url: ${LOKI_URL}  
 
   sftp:
-    image: atmoz/sftp
-    container_name: sftp
+    image: linuxserver/openssh-server
     volumes:
-      - /srv/firebird_data:/home/data
+      - /srv/firebird_data:/home/sftp-user/data
     ports:
-      - "2222:22"
-    command: sftp-user:admin:1001  
-    user: root
+      - "2222:2222"
+    environment:
+      - PUID=1001                  # UID del usuario limitado
+      - PGID=1001                  # GID del usuario limitado
+      - TZ=America/Argentina/Buenos_Aires
+      - USER_NAME=sftp-user         # usuario para SFTP
+      - USER_PASSWORD=admin
     restart: unless-stopped
 volumes:
   firebird_data:
