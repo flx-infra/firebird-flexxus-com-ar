@@ -32,6 +32,7 @@ services:
     restart: unless-stopped
 volumes:
   firebird_data:
+    driver: local
     name: "${SERVICE_NAME}_firebird_data"
 networks:
   traefik:
