@@ -20,25 +20,18 @@ services:
       options:
         loki-url: ${LOKI_URL}  
 
-  filebrowser:
-    image: filebrowser/filebrowser:latest
-    networks:
-      - traefik
-    user: 1000:1000
+  sftp:
+    image: atmoz/sftp
+    container_name: sftp
     volumes:
-      - firebird_data:/srv   # comparte el mismo volumen con Firebird
-      - filebrowser_config:/config
-      - filebrowser_db:/database
+      - firebird_data:/home/data:rw   # comparte el volumen con Firebird
     ports:
-      - "5003:80"
+      - "2222:22"
+    command: user:password:1001   # user/pass para conectarte
     restart: unless-stopped
 volumes:
   firebird_data:
     name: "${SERVICE_NAME}_firebird_data"
-  filebrowser_config:
-    name: "${SERVICE_NAME}_filebrowser_config"
-  filebrowser_db:
-    name: "${SERVICE_NAME}_filebrowser_db"
 networks:
   traefik:
     external:
