@@ -12,11 +12,8 @@ services:
     deploy:
       placement:
         constraints: ["${NODE}"]  
-      ports:
-        - target: 3050
-          published: 3050
-          protocol: tcp
-          mode: host  # O 'ingress' si quieres balanceador  
+    ports:
+      - "3050:3050"
     restart: unless-stopped
     logging:
       driver: loki
