@@ -27,7 +27,11 @@ services:
     ports:
       - "2222:22"
     command: "sftp-user:admin:1001:1001:firebird-data"
+    deploy:
+      placement:
+        constraints: ["${NODE}"]      
     restart: unless-stopped
+    
 volumes:
   firebird_data:
     driver: local
