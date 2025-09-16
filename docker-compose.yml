@@ -6,14 +6,17 @@ services:
     environment:
       - ISC_PASSWORD=3122414422
     volumes:
-      - firebird_data:/firebird/data
-    ports:
-      - "3050:3050"   
+      - firebird_data:/firebird/data   
     networks:
       - traefik
     deploy:
       placement:
-        constraints: ["${NODE}"]      
+        constraints: ["${NODE}"]  
+      ports:
+        - target: 3050
+          published: 3050
+          protocol: tcp
+          mode: host  # O 'ingress' si quieres balanceador  
     restart: unless-stopped
     logging:
       driver: loki
