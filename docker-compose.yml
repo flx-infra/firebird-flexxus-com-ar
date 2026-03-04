@@ -5,6 +5,7 @@ services:
     image: jacobalberty/firebird:2.5-sc
     environment:
       - ISC_PASSWORD=3122414422
+      - TZ=America/Argentina/Cordoba
     volumes:
       - firebird_data:/firebird/data   
     networks:
