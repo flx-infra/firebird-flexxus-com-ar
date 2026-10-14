@@ -33,6 +33,23 @@ services:
         constraints: ["${NODE}"]      
     restart: unless-stopped
     
+  filebrowser:
+    image: hurlenko/filebrowser:v2.10.0
+    user: "0:0"
+    ports:
+      - "8022:8080"
+    volumes:
+      - firebird_data:/firebird/data
+    deploy:
+      placement:
+        constraints: ["${NODE}"]
+    environment:
+      - FB_PASSWORD=$$2a$$10$$v174TC2HFsPfoEXMkXlrH.wpmUzGsUPpnSf.xOUp1IK1s4tndTKFy
+      - FB_BASEURL=/filebrowser/
+    restart: always
+    networks:
+      - traefik  
+      
 volumes:
   firebird_data:
     driver: local
