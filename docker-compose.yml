@@ -27,7 +27,7 @@ services:
       - firebird_data:/home/sftp-user/firebird-data  
     ports:
       - "2222:22"
-    command: "sftp-user:admin:1001:0:firebird-data"
+    command: "sftp-user:admin:84:84"
     deploy:
       placement:
         constraints: ["${NODE}"]      
